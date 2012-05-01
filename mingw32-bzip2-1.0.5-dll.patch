@@ -1,0 +1,15 @@
+--- bzip2-1.0.5/Makefile-libbz2_so	2008-09-25 12:52:11.000000000 +0100
++++ bzip2-1.0.5.dll/Makefile-libbz2_so	2008-09-25 12:59:22.000000000 +0100
+@@ -35,10 +35,8 @@
+       bzlib.o
+ 
+ all: $(OBJS)
+-	$(CC) $(CFLAGS) -shared -Wl,-soname -Wl,libbz2.so.1 -o libbz2.so.1.0.4 $(OBJS)
+-	$(CC) $(CFLAGS) -o bzip2-shared bzip2.c libbz2.so.1.0.4
+-	rm -f libbz2.so.1.0
+-	ln -s libbz2.so.1.0.4 libbz2.so.1.0
++	$(CC) $(CFLAGS) -shared -Wl,--out-implib -Wl,bz2.dll.a -Wl,-soname -Wl,bz2-1.dll -o bz2-1.dll $(OBJS)
++	$(CC) $(CFLAGS) -o bzip2-shared bzip2.c bz2-1.dll
+ 
+ clean: 
+ 	rm -f $(OBJS) bzip2.o libbz2.so.1.0.4 libbz2.so.1.0 bzip2-shared
